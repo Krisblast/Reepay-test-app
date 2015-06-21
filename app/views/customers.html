@@ -1,0 +1,199 @@
+<div class="row">
+  <div class="col-md-8">
+
+    <div style="text-align: right">
+
+      <table class="table table-striped reepay-table" style="text-align: left">
+
+        <thead>
+        <th>Company</th>
+        <th>Email</th>
+        <th>Charges</th>
+        <th>Subscriptions</th>
+        </thead>
+
+        <tbody>
+        <tr ng-class="{'selected-customer-active':selected_customer.handle == customer.handle }"
+            ng-click="selectCustomer(customer)" ng-repeat="customer in customers_obj.content">
+
+          <td><b>{{customer.company}}</b></td>
+          <td>{{customer.email}}</td>
+          <td style="border-left:1px solid rgba(128, 128, 128, 0.14);border-right: 1px solid rgba(128, 128, 128, 0.14);text-align: center">
+            <span class="badge alert-success">{{customer.settled_charges}} Settled</span>
+            <span class="badge alert-danger">{{customer.failed_charges}} Failed</span>
+            <span class="badge alert-warning">{{customer.pending_charges}} Pending</span>
+            <span class="badge alert-info">{{customer.dunning_charges}} Dunning</span>
+          </td>
+          <td style="text-align: right">
+            <span class="badge alert-success">{{customer.active_subscriptions}} Active</span>
+            <span class="badge alert-danger">{{customer.cancelled_subscriptions}} Cancelled</span>
+            <span class="badge alert-warning">{{customer.expired_subscriptions}} Expired</span>
+          </td>
+
+        </tr>
+        </tbody>
+
+      </table>
+
+      <span ng-repeat="page in pagination">
+      <button ng-class="{'current-pagination': page.page == active_page}" class="btn btn-default"
+              ng-click="getCustomers(page.page, list_length)">{{page.page}}
+      </button>
+      </span>
+
+      <div class="clearfix"></div>
+    </div>
+
+
+  </div>
+
+  <div class="col-md-4">
+
+    <div class="customer-card">
+
+      <div class="header colored">
+        <p>Customer Overview</p>
+      </div>
+
+      <div class="content">
+
+        <div style="padding:8px;" ng-if="!selected_customer">Select a customer from the list for detailed information
+        </div>
+
+        <!--<i ng-if="selected_customer" class="fa fa-credit-card payment-customer"></i>-->
+        <i ng-if="selected_customer" ng-click="open('', selected_customer)" class="fa fa-comment note-customer"></i>
+        <i ng-if="selected_customer && selected_customer.dunning_charges == 0 && selected_customer.pending_charges == 0 && selected_customer.expired_subscriptions == 0" ng-click="deleteCustomer(selected_customer)" class="fa fa-trash-o delete-customer"></i>
+
+        <form ng-if="selected_customer">
+
+          <div class="form-group form-group-sm col-md-6">
+            <label>Charges</label>
+            <ul class="list-unstyled">
+              <li><span class="badge alert-success">{{selected_customer.settled_charges}} Settled</span></li>
+              <li><span class="badge alert-danger">{{selected_customer.failed_charges}} Failed</span></li>
+              <li><span class="badge alert-warning">{{selected_customer.pending_charges}} Pending</span></li>
+              <li><span class="badge alert-info">{{selected_customer.dunning_charges}} Dunning</span></li>
+            </ul>
+          </div>
+
+          <div class="form-group form-group-sm col-md-6" style="z-index: 1">
+            <label>Subscriptions</label>
+            <ul class="list-unstyled">
+              <li><span class="badge alert-success">{{selected_customer.active_subscriptions}} Active</span></li>
+              <li><span class="badge alert-danger">{{selected_customer.cancelled_subscriptions}} Cancelled</span></li>
+              <li><span class="badge alert-warning">{{selected_customer.expired_subscriptions}} Expired</span></li>
+            </ul>
+          </div>
+
+          <div class="form-group form-group-sm col-md-12">
+            <label for="Company">Company</label>
+            <input ng-change="updateCustomer(selected_customer)" ng-model-options="{updateOn: 'blur'}"  type="text" ng-model="selected_customer.company" class="form-control reepay-input" id="Company"
+                   placeholder="Company Name">
+          </div>
+
+          <div class="form-group form-group-sm col-md-6">
+            <label for="First">First Name</label>
+            <input ng-change="updateCustomer(selected_customer)" ng-model-options="{updateOn: 'blur'}" type="text" ng-model="selected_customer.first_name" class="form-control reepay-input" id="First"
+                   placeholder="First Name">
+          </div>
+
+          <div class="form-group form-group-sm col-md-6">
+            <label for="Last">Last Name</label>
+            <input ng-change="updateCustomer(selected_customer)" ng-model-options="{updateOn: 'blur'}" type="text" ng-model="selected_customer.last_name" class="form-control reepay-input" id="Last"
+                   placeholder="Last Name">
+          </div>
+
+          <div class="form-group form-group-sm col-md-6">
+            <label for="Email">Email</label>
+            <input ng-change="updateCustomer(selected_customer)" ng-model-options="{updateOn: 'blur'}" type="email" ng-model="selected_customer.email" class="form-control reepay-input" id="Email"
+                   placeholder="Email">
+          </div>
+
+          <div class="form-group form-group-sm col-md-6">
+            <label for="Phone">Phone</label>
+            <input ng-change="updateCustomer(selected_customer)" ng-model-options="{updateOn: 'blur'}" type="text" ng-model="selected_customer.phone" class="form-control reepay-input" id="Phone"
+                   placeholder="Phone">
+          </div>
+
+
+          <div class="form-group">
+            <label></label>
+          </div>
+
+          <div class="form-group form-group-sm col-md-6">
+            <label for="Address1">Address1</label>
+            <input ng-change="updateCustomer(selected_customer)" ng-model-options="{updateOn: 'blur'}" type="text" ng-model="selected_customer.address" class="form-control reepay-input" id="Address1"
+                   placeholder="Address1">
+          </div>
+
+          <div class="form-group form-group-sm col-md-6">
+            <label for="Address2">Address2</label>
+            <input ng-change="updateCustomer(selected_customer)" ng-model-options="{updateOn: 'blur'}" type="text" ng-model="selected_customer.address2" class="form-control reepay-input" id="Address2"
+                   placeholder="Address2">
+          </div>
+
+          <div class="form-group form-group-sm col-md-6">
+            <label for="City">City</label>
+            <input ng-change="updateCustomer(selected_customer)" ng-model-options="{updateOn: 'blur'}" type="text" ng-model="selected_customer.city" class="form-control reepay-input" id="City"
+                   placeholder="City">
+          </div>
+
+          <div class="form-group form-group-sm col-md-6">
+            <label for="Postal">Postal Code</label>
+            <input ng-change="updateCustomer(selected_customer)" ng-model-options="{updateOn: 'blur'}" type="text" ng-model="selected_customer.postal_code" class="form-control reepay-input" id="Postal"
+                   placeholder="Postal">
+          </div>
+
+          <div class="form-group form-group-sm col-md-6">
+            <label for="Country">Country</label>
+            <input ng-change="updateCustomer(selected_customer)" ng-model-options="{updateOn: 'blur'}" type="text" ng-model="selected_customer.country" class="form-control reepay-input" id="Country"
+                   placeholder="Country">
+          </div>
+
+
+          <div class="form-group form-group-sm col-md-6">
+            <label for="VAT">VAT</label>
+            <input ng-change="updateCustomer(selected_customer)" ng-model-options="{updateOn: 'blur'}" type="text" ng-model="selected_customer.vat" class="form-control reepay-input" id="VAT"
+                   placeholder="VAT">
+          </div>
+
+          <div class="form-group">
+            <label></label>
+          </div>
+
+          <div class="clearfix"></div>
+
+          <div id="customer-accordion"></div>
+          <accordion close-others="false">
+            <accordion-group is-open="status.notes.open">
+              <accordion-heading>
+                Customer Notes <span style="margin-left: 5px" class="badge"> {{customer_notes.length}}</span> <i class="pull-right glyphicon"
+                                  ng-class="{'glyphicon-chevron-down': status.notes.open, 'glyphicon-chevron-right': !status.notes.open}"></i>
+              </accordion-heading>
+
+              <div ng-repeat="note in customer_notes" class="note-card">
+
+                <p>{{note.note}}</p>
+                <p class="pull-right"><i>{{note.user_name}} - {{note.user_email}}</i></p>
+                <div class="clearfix"></div>
+              </div>
+
+            </accordion-group>
+
+            <accordion-group is-open="status.payment.open">
+              <accordion-heading>
+                Payment methods <i class="pull-right glyphicon"
+                                   ng-class="{'glyphicon-chevron-down': status.payment.open, 'glyphicon-chevron-right': !status.payment.open}"></i>
+              </accordion-heading>
+              The customers payment methods could be listed here
+            </accordion-group>
+          </accordion>
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+

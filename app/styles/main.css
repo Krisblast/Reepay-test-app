@@ -1,0 +1,201 @@
+/* Space out content a bit */
+@import url(http://fonts.googleapis.com/css?family=Lato:400,700);
+
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-family: Lato-Light, Lato;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Custom page header */
+.header {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+  padding-bottom: 19px;
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+header .navbar {
+  background-color: rgba(255, 255, 255, .95);
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid rgba(151, 151, 151, .1);
+  height: 65px;
+}
+
+header .navbar .navbar-brand img {
+  width: 110px;
+}
+
+header .navbar .navbar-brand {
+  padding: 18px 30px;
+}
+
+.current-pagination {
+
+  background-color: #234d85 !important;
+  color: white !important;
+}
+
+.reepay-table {
+  background-color: white;
+  border: 1px solid #EEF3F7;
+
+}
+
+.reepay-table thead {
+  background-color: #234d85;
+  color: white;
+  border-right: 1px solid rgb(35, 77, 133);
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #EEF3F7;
+}
+
+.table > tbody > tr:hover {
+
+  background: rgba(35, 77, 133, 0.26);
+  cursor: pointer;
+}
+
+.badge {
+  background: none
+}
+
+.selected-customer-active {
+
+  background: rgba(35, 77, 133, 0.26) !important;
+  transition: background 0.2s ease 0s;
+
+}
+
+.customer-card .header {
+
+  background-color: #234d85;
+  height: 37px;
+  padding: 0;
+  border-bottom: 0;
+}
+
+.customer-card .content {
+
+  padding: 8px;
+  border: 1px solid #EEF3F7;
+  opacity: 1;
+
+}
+
+.customer-card .header > p {
+
+  font-weight: bold;
+  padding: 8px;
+  color: white;
+}
+
+.colored {
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+) no-repeat;
+  background: -moz-linear-gradient(-55deg, #234d85 30%, #00a071 100%) no-repeat;
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(30%, #234d85), color-stop(100%, #00a071)) no-repeat;
+  background: -webkit-linear-gradient(-55deg, #234d85 30%, #00a071 100%) no-repeat;
+  background: -o-linear-gradient(-55deg, #234d85 30%, #00a071 100%) no-repeat;
+  background: -ms-linear-gradient(-55deg, #234d85 30%, #00a071 100%) no-repeat;
+  background: linear-gradient(135deg, #234d85 30%, #00a071 100%) no-repeat;
+}
+
+.reepay-input {
+
+  margin-bottom: 0px;
+  background-color: transparent;
+  height: 35px !important;
+  border: 0;
+  border-bottom: 1px solid rgba(35, 77, 133, 1) !important;
+  border-radius: 2px !important;
+  -webkit-border-radius: 0px !important;
+  -webkit-box-shadow: none;
+  font-family: Lato-Regular, Lato;
+  font-size: 13px !important;
+  line-height: 20px !important;
+}
+
+.reepay-table > tbody > tr > td {
+
+  padding-top: 11px;
+  padding-bottom: 11px;
+}
+
+.content label {
+
+  color: rgba(35, 77, 133, 1);
+}
+
+.panel-default > .panel-heading {
+  background-color: rgba(35, 77, 133, 1);
+  font-weight: bold;
+  color: white;
+
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+) no-repeat;
+  background: -moz-linear-gradient(-55deg, #234d85 30%, #00a071 100%) no-repeat;
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(30%, #234d85), color-stop(100%, #00a071)) no-repeat;
+  background: -webkit-linear-gradient(-55deg, #234d85 30%, #00a071 100%) no-repeat;
+  background: -o-linear-gradient(-55deg, #234d85 30%, #00a071 100%) no-repeat;
+  background: -ms-linear-gradient(-55deg, #234d85 30%, #00a071 100%) no-repeat;
+  background: linear-gradient(135deg, #234d85 30%, #00a071 100%) no-repeat;
+}
+
+.delete-customer, .note-customer, .payment-customer {
+  position: absolute;
+  right: 15px;
+  background-color: rgb(35, 77, 133);
+  color: white;
+  cursor: pointer;
+  z-index: 2;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding-top: 8px;
+}
+
+.delete-customer:hover, .note-customer:hover, .payment-customer:hover {
+  background-color: rgba(35, 77, 133, 0.26);
+}
+
+.payment-customer {
+  top: 81px;
+}
+
+.delete-customer {
+  top: 81px;
+}
+
+.note-card {
+
+  padding: 10px;
+  background-color: #EEF3F7;
+  margin-bottom: 15px;
+
+}
+
+.note-card p {
+  margin-bottom: 0;
+}
